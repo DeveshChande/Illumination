@@ -191,4 +191,4 @@ if __name__ == "__main__":
             virustotal(arguments.ip, arguments.file)
     except argparse.ArgumentError as arg_err:
         print(arg_err)
-        print("Failed to parse arguments.\n")
+        print("Failed to parse arguments.\n\n")
