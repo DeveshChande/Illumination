@@ -5,7 +5,7 @@ import requests
 import utils
 
 
-ABUSEIPDB_API_KEY = "ad88576c42f8053c288d3de1775b21829637deb89fe2bad6c2caa7d592ac11d9a47da56aa736dba3"
+ABUSEIPDB_API_KEY = ""
 VIRUSTOTAL_API_KEY = ""
 
 
