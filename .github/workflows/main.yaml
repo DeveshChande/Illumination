@@ -1,4 +1,4 @@
-            - name: GitGuardian Shield Action
+- name: GitGuardian Shield Action
   # You may pin to the exact commit or the version.
   # uses: GitGuardian/ggshield-action@49e2a3a627b494e3860ef30ad0d66de2696cf49c
   uses: GitGuardian/ggshield-action@v1.25.0
