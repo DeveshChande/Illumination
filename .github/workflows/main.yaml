@@ -1,0 +1,11 @@
+            - name: GitGuardian Shield Action
+  # You may pin to the exact commit or the version.
+  # uses: GitGuardian/ggshield-action@49e2a3a627b494e3860ef30ad0d66de2696cf49c
+  uses: GitGuardian/ggshield-action@v1.25.0
+  with:
+    # Arguments to pass to `ggshield secret scan ci`.
+
+[`ggshield secret scan ci` reference](https://docs.gitguardian.com/ggshield-docs/reference/secret/scan/ci).
+
+    args: # optional
+          
