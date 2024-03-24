@@ -22,7 +22,7 @@ def validate_file_hash(file_hash: str) -> bool:
         print(ve)
         print("The provided file hash does not subscribe to the SHA256 hash format.\n")
         return False
-    
+
 
 def validate_ip_address(ip: str) -> bool:
     """

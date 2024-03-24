@@ -49,7 +49,7 @@ def ip_analysis(program_arguments: dict, ABUSEIPDB_API_KEY: str, VIRUSTOTAL_API_
     Returns:
         None
     """
-    
+
     try:
         ip_address_object = ip_address.InternetProtocolAddress()
         s = requests.Session()
@@ -75,7 +75,7 @@ def parse_arguments():
     Returns:
         argparse.Namespace: An object containing parsed arguments.
     """
-    
+
     parser = argparse.ArgumentParser(description="Illumination is a CLI tool to enrich atomic data.\n",
                                      epilog="Written by Devesh Chande.\n", 
                                      usage="python3 illumination.py [-i {IP_ADDR} | -s {SHA256_HASH}] [-a] [-v]")

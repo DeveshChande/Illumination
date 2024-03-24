@@ -1,7 +1,7 @@
 from illumination import utils
 import requests
 import unittest
-from unittest.mock import patch, Mock
+from unittest.mock import Mock
 
 
 class TestUtils(unittest.TestCase):
@@ -17,7 +17,6 @@ class TestUtils(unittest.TestCase):
         # Validates Incorrect character set
 
         self.assertFalse(False, utils.validate_file_hash("9930e58ec9ff55edb27281ed0*cc68bf7fb31593eabdaad88d928c4c2a13973b"))
-            
 
         
     def test_validate_ip_address(self):
@@ -65,16 +64,5 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(patched_response, mock_response.json())
 
         
-        
-
-
-
-        
-
-        
 if __name__ == "__main__":
     unittest.main()
-
-"""
-self.assertEqual(utils.get_JSON_response(s, url=url, headers=headers), {'data': {'ipAddress': '193.12.12.10', 'isPublic': True, 'ipVersion': 4, 'isWhitelisted': None, 'abuseConfidenceScore': 0, 'usageType': None, 'isTor': False, 'totalReports': 0, 'numDistinctUsers': 0, 'lastReportedAt': None}})
-"""

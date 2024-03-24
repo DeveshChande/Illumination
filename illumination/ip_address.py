@@ -19,7 +19,7 @@ class InternetProtocolAddress:
         Returns:
             str: A JSON object
         """
-         
+
         url = "https://api.abuseipdb.com/api/v2/check"
         query_string = {
             "ipAddress": ip,
