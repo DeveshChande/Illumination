@@ -9,18 +9,18 @@ ABUSEIPDB_API_KEY = ""
 VIRUSTOTAL_API_KEY = ""
 
 
-"""
-Performs hash based information retrieval from trusted sources.
-
-Args:
-    program_arguments (dict): Dictionary representing the arguments passed by the user.
-    VIRUSTOTAL_API_KEY (str): User-defined VirusTotal API Key.
-    sha256hash (str): User specified SHA256 hash.
-
-Returns:
-    None
-"""
 def file_hash_analysis(program_arguments: dict, VIRUSTOTAL_API_KEY: str, sha256hash: str) -> None:
+    """
+    Performs hash based information retrieval from trusted sources.
+
+    Args:
+        program_arguments (dict): Dictionary representing the arguments passed by the user.
+        VIRUSTOTAL_API_KEY (str): User-defined VirusTotal API Key.
+        sha256hash (str): User specified SHA256 hash.
+
+    Returns:
+        None
+    """
 
     try:
         file_hash_object = file_hash.FileHash()
@@ -36,19 +36,19 @@ def file_hash_analysis(program_arguments: dict, VIRUSTOTAL_API_KEY: str, sha256h
         print("Ambiguous error occurred.\n")
 
 
-"""
-Performs IP Address based information retrieval from trusted sources.
-
-Args:
-    program_arguments (dict): Dictionary representing the arguments passed by the user.
-    ABUSEIPDB_API_KEY (str): User-defined AbuseIPDB API Key.
-    VIRUSTOTAL_API_KEY (str): User-defined VirusTotal API Key.
-    ip (str): User specified IP Address.
-
-Returns:
-    None
-"""
 def ip_analysis(program_arguments: dict, ABUSEIPDB_API_KEY: str, VIRUSTOTAL_API_KEY: str, ip: str):
+    """
+    Performs IP Address based information retrieval from trusted sources.
+
+    Args:
+        program_arguments (dict): Dictionary representing the arguments passed by the user.
+        ABUSEIPDB_API_KEY (str): User-defined AbuseIPDB API Key.
+        VIRUSTOTAL_API_KEY (str): User-defined VirusTotal API Key.
+        ip (str): User specified IP Address.
+
+    Returns:
+        None
+    """
     
     try:
         ip_address_object = ip_address.InternetProtocolAddress()
@@ -68,13 +68,14 @@ def ip_analysis(program_arguments: dict, ABUSEIPDB_API_KEY: str, VIRUSTOTAL_API_
         print("Ambiguous error occurred.\n")
 
 
-"""
-Parses command-line arguments securely using argparse.
-
-Returns:
-    argparse.Namespace: An object containing parsed arguments.
-"""
 def parse_arguments():
+    """
+    Parses command-line arguments securely using argparse.
+
+    Returns:
+        argparse.Namespace: An object containing parsed arguments.
+    """
+    
     parser = argparse.ArgumentParser(description="Illumination is a CLI tool to enrich atomic data.\n",
                                      epilog="Written by Devesh Chande.\n", 
                                      usage="python3 illumination.py [-i {IP_ADDR} | -s {SHA256_HASH}] [-a] [-v]")

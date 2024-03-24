@@ -2,16 +2,17 @@ import ipaddress
 import requests
 from typing import Optional
 
-"""
-Determines whether the specified file hash is a valid SHA256 hash.
 
-Args:
-    file_hash (str): The file hash to validate.
-
-Returns:
-    bool: A boolean value.
-"""
 def validate_file_hash(file_hash: str) -> bool:
+    """
+    Determines whether the specified file hash is a valid SHA256 hash.
+
+    Args:
+        file_hash (str): The file hash to validate.
+
+    Returns:
+        bool: A boolean value.
+    """
     if len(file_hash) != 64:
         return False
     try:
@@ -23,33 +24,34 @@ def validate_file_hash(file_hash: str) -> bool:
         return False
     
 
-"""
-Determines whether the specified IP Address is allocated for private networks.
-
-Args:
-    ip (str): The IP Address to validate.
-
-Returns:
-    bool: A boolean value.
-"""
 def validate_ip_address(ip: str) -> bool:
+    """
+    Determines whether the specified IP Address is allocated for private networks.
+
+    Args:
+        ip (str): The IP Address to validate.
+
+    Returns:
+        bool: A boolean value.
+    """
     try:
         return not ipaddress.ip_address(ip).is_private
     except ipaddress.AddressValueError as address_value_err:
         print(address_value_err)
         print("Invalid IP Address.\n")
 
-"""
-Fetches the appropriate JSON response from the concerned API endpoint.
 
-Args:
-    s (requests.Session): The requests Session object to use for the HTTP connection.
-
-    url (str): The URL of the API Endpoint.
-
-    headers (dict): The key-value pairs in the header associated with the request.
-"""
 def get_JSON_response(s: requests.Session, url: str, headers: dict, params: Optional[dict] = None) -> str:
+    """
+    Fetches the appropriate JSON response from the concerned API endpoint.
+
+    Args:
+        s (requests.Session): The requests Session object to use for the HTTP connection.
+
+        url (str): The URL of the API Endpoint.
+
+        headers (dict): The key-value pairs in the header associated with the request.
+    """
     try:
         object_response = s.get(url=url, params=params, headers=headers)
         return object_response.json()
