@@ -8,8 +8,8 @@ import utils
 
 ABUSEIPDB_API_KEY = ""
 VIRUSTOTAL_API_KEY = ""
-CENSYS_API_ID = "58d1fd7c-1809-4376-b0ac-775af5b16b2c"
-CENSYS_API_SECRET = "ha3c7MBh6zf6dH7mVQblbg0c9yOtKmR0"
+CENSYS_API_ID = ""
+CENSYS_API_SECRET = ""
 
 def file_hash_analysis(program_arguments: dict, VIRUSTOTAL_API_KEY: str, sha256hash: str) -> None:
     """
