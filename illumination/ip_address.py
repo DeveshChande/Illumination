@@ -77,8 +77,7 @@ class InternetProtocolAddress:
         """
         url = f"https://geolite.info/geoip/v2.1/country/{ip}"
         headers = {"accept":"application/json"}
-        response = requests.get(url, headers, auth=(ACCOUNT_ID, LICENSE_KEY))
-        print(response.text)
+        self.maxmind = requests.get(url, headers, auth=(ACCOUNT_ID, LICENSE_KEY), timeout=5).text
 
     def retrieve_ipinfo_ip_object(self, ACCESS_TOKEN: str, ip: Optional[str] = None) -> None:
         """
