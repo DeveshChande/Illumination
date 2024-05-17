@@ -94,7 +94,7 @@ def parse_arguments():
     parser.add_argument('-v', '--virustotal', action="store_true", default=False, help="Enrich data from VirusTotal API.")
     parser.add_argument('-a', '--abuseipdb', action="store_true", default=False, help="Enrich data from AbuseIPDB API.")
     parser.add_argument('-c', '--censys', action='store_true', default=False, help="Enrich data from Censys API.")
-    
+
     args = parser.parse_args()
     return args
     

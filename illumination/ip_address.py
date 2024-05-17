@@ -47,7 +47,7 @@ class InternetProtocolAddress:
         Returns:
             None
         """
-        
+
         url = f"https://www.virustotal.com/api/v3/ip_addresses/{ip}"
         headers = {
         "accept":"application/json","x-apikey":f"{VIRUSTOTAL_API_KEY}"}

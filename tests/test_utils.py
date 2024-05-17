@@ -26,7 +26,7 @@ class TestUtils(unittest.TestCase):
 
         # Validates public IP Address
         self.assertEqual(True, utils.validate_ip_address("193.23.90.191"))
-    
+
 
     @unittest.mock.patch('requests.Session.get')
     def test_get_JSON_response(self, mock_get):
