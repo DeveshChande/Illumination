@@ -10,6 +10,9 @@ ABUSEIPDB_API_KEY = ""
 VIRUSTOTAL_API_KEY = ""
 CENSYS_API_ID = ""
 CENSYS_API_SECRET = ""
+MAXMIND_ACCOUNT_ID = ""
+MAXMIND_LICENSE_KEY = ""
+IPINFO_ACCESS_TOKEN = ""
 
 def file_hash_analysis(program_arguments: dict, VIRUSTOTAL_API_KEY: str, sha256hash: str) -> None:
     """
@@ -67,10 +70,18 @@ def ip_analysis(program_arguments: dict, ABUSEIPDB_API_KEY: str, VIRUSTOTAL_API_
             environ['CENSYS_API_SECRET'] = CENSYS_API_SECRET
             ip_address_object.retrieve_censys_ip_object(ip)
 
+        if program_arguments["maxmind"]:
+            ip_address_object.retrieve_maxmind_ip_object(MAXMIND_ACCOUNT_ID, MAXMIND_LICENSE_KEY, ip)
+        
+        if program_arguments["ipinfo"]:
+            ip_address_object.retrieve_ipinfo_ip_object(IPINFO_ACCESS_TOKEN, ip)
+
         s.close()
         print(ip_address_object.abuseipdb)
         print(ip_address_object.virustotal)
         print(ip_address_object.censys)
+        print(ip_address_object.maxmind)
+        print(ip_address_object.ipinfo)
 
     except RuntimeError as re:
         print(re)
@@ -91,13 +102,15 @@ def parse_arguments():
 
     parser.add_argument('-i', '--ip', help="Specify IP Address.")
     parser.add_argument('-s', '--sha256hash', help="Specify SHA256 Hash.")
-    parser.add_argument('-v', '--virustotal', action="store_true", default=False, help="Enrich data from VirusTotal API.")
-    parser.add_argument('-a', '--abuseipdb', action="store_true", default=False, help="Enrich data from AbuseIPDB API.")
-    parser.add_argument('-c', '--censys', action='store_true', default=False, help="Enrich data from Censys API.")
+    parser.add_argument('-v', '--virustotal', action="store_true", default=False, help="Enrich data from the VirusTotal API.")
+    parser.add_argument('-a', '--abuseipdb', action="store_true", default=False, help="Enrich data from the AbuseIPDB API.")
+    parser.add_argument('-c', '--censys', action='store_true', default=False, help="Enrich data from the Censys API.")
+    parser.add_argument('-m', '--maxmind', action='store_true', default=False, help="Enrich data from the MaxMind API.")
+    parser.add_argument('-p', '--ipinfo', action='store_true', default=False, help="Enrich data from the IPInfo API.")
 
     args = parser.parse_args()
     return args
-    
+
 
 if __name__ == "__main__":
     try:

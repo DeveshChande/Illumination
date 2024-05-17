@@ -1,4 +1,5 @@
 from censys.search import CensysHosts
+import ipinfo
 from json import dumps
 import requests
 from typing import Optional
@@ -10,6 +11,8 @@ class InternetProtocolAddress:
         self.abuseipdb = ""
         self.virustotal = ""
         self.censys = ""
+        self.maxmind = ""
+        self.ipinfo = ""
 
     def retrieve_abuseipdb_ip_object(self, ABUSEIPDB_API_KEY: str, s: requests.Session, ip: Optional[str] = None) -> None:
         """
@@ -53,17 +56,37 @@ class InternetProtocolAddress:
         "accept":"application/json","x-apikey":f"{VIRUSTOTAL_API_KEY}"}
 
         self.virustotal = utils.get_JSON_response(s, url=url, headers=headers)
-    
+
     def retrieve_censys_ip_object(self, ip: Optional[str] = None) -> None:
         """
         Enriches information from the Censys API.
 
         Args:
             ip (str): The IP Address to enrich.
-
-        Returns:
-            str: A string value
         """
         h = CensysHosts()
         host = h.view(ip)
         self.censys = dumps(host)
+
+    def retrieve_maxmind_ip_object(self, ACCOUNT_ID: str, LICENSE_KEY:str, ip: Optional[str] = None) -> None:
+        """
+        Enriches information from the MaxMind API.
+
+        Args:
+            ip (str): The IP Address to enrich.
+        """
+        url = f"https://geolite.info/geoip/v2.1/country/{ip}"
+        headers = {"accept":"application/json"}
+        response = requests.get(url, headers, auth=(ACCOUNT_ID, LICENSE_KEY))
+        print(response.text)
+
+    def retrieve_ipinfo_ip_object(self, ACCESS_TOKEN: str, ip: Optional[str] = None) -> None:
+        """
+        Enriches information from the IPInfo API.
+
+        Args:
+            ip (str): The IP Address to enrich.
+        """
+
+        handler = ipinfo.getHandler(ACCESS_TOKEN)
+        self.ipinfo = dumps(handler.getDetails(ip).all)

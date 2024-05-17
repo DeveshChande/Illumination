@@ -59,7 +59,7 @@ class TestUtils(unittest.TestCase):
 
         patched_response = utils.get_JSON_response(s,url=url, headers=headers, params=params)
         s.close()
-        
+
         mock_get.assert_called_with(url='https://api.example.com/', params={'id': '0'}, headers={'API_KEY': '78bf9j235kbxm834636n'})
         self.assertEqual(patched_response, mock_response.json())
 
