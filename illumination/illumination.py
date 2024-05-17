@@ -1,13 +1,15 @@
 import argparse
 import file_hash
 import ip_address
+from os import environ
 import requests
 import utils
 
 
 ABUSEIPDB_API_KEY = ""
 VIRUSTOTAL_API_KEY = ""
-
+CENSYS_API_ID = "58d1fd7c-1809-4376-b0ac-775af5b16b2c"
+CENSYS_API_SECRET = "ha3c7MBh6zf6dH7mVQblbg0c9yOtKmR0"
 
 def file_hash_analysis(program_arguments: dict, VIRUSTOTAL_API_KEY: str, sha256hash: str) -> None:
     """
@@ -60,9 +62,16 @@ def ip_analysis(program_arguments: dict, ABUSEIPDB_API_KEY: str, VIRUSTOTAL_API_
         if program_arguments["virustotal"]:    
             ip_address_object.retrieve_virustotal_ip_object(VIRUSTOTAL_API_KEY, s, ip)
 
+        if program_arguments["censys"]:
+            environ['CENSYS_API_ID'] = CENSYS_API_ID
+            environ['CENSYS_API_SECRET'] = CENSYS_API_SECRET
+            ip_address_object.retrieve_censys_ip_object(ip)
+
         s.close()
         print(ip_address_object.abuseipdb)
         print(ip_address_object.virustotal)
+        print(ip_address_object.censys)
+
     except RuntimeError as re:
         print(re)
         print("Ambiguous error occurred.\n")
@@ -82,8 +91,9 @@ def parse_arguments():
     
     parser.add_argument('-i', '--ip', help="Specify IP Address.")
     parser.add_argument('-s', '--sha256hash', help="Specify SHA256 Hash.")
-    parser.add_argument('-v', '--virustotal', action="store_true", default=False, help="Enable VirusTotal analysis.")
-    parser.add_argument('-a', '--abuseipdb', action="store_true", default=False, help="Enable AbuseIPDB analysis.")
+    parser.add_argument('-v', '--virustotal', action="store_true", default=False, help="Enrich data from VirusTotal API.")
+    parser.add_argument('-a', '--abuseipdb', action="store_true", default=False, help="Enrich data from AbuseIPDB API.")
+    parser.add_argument('-c', '--censys', action='store_true', default=False, help="Enrich data from Censys API.")
     
     args = parser.parse_args()
     return args

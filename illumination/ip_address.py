@@ -1,3 +1,5 @@
+from censys.search import CensysHosts
+from json import dumps
 import requests
 from typing import Optional
 import utils
@@ -7,6 +9,7 @@ class InternetProtocolAddress:
     def __init__(self) -> None:
         self.abuseipdb = ""
         self.virustotal = ""
+        self.censys = ""
 
     def retrieve_abuseipdb_ip_object(self, ABUSEIPDB_API_KEY: str, s: requests.Session, ip: Optional[str] = None) -> None:
         """
@@ -51,3 +54,17 @@ class InternetProtocolAddress:
         "accept":"application/json","x-apikey":f"{VIRUSTOTAL_API_KEY}"}
 
         self.virustotal = utils.get_JSON_response(s, url=url, headers=headers)
+    
+    def retrieve_censys_ip_object(self, ip: Optional[str] = None) -> None:
+        """
+        Enriches information from the Censys API.
+
+        Args:
+            ip (str): The IP Address to enrich.
+
+        Returns:
+            str: A string value
+        """
+        h = CensysHosts()
+        host = h.view(ip)
+        self.censys = dumps(host)

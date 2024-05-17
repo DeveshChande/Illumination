@@ -51,6 +51,8 @@ def get_JSON_response(s: requests.Session, url: str, headers: dict, params: Opti
         url (str): The URL of the API Endpoint.
 
         headers (dict): The key-value pairs in the header associated with the request.
+    
+    Returns: A string value.
     """
     try:
         object_response = s.get(url=url, params=params, headers=headers)
