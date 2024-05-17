@@ -33,7 +33,6 @@ class InternetProtocolAddress:
             "Key": ABUSEIPDB_API_KEY 
         }
 
-        
         self.abuseipdb = utils.get_JSON_response(s, url=url, headers=headers, params=query_string)
 
     def retrieve_virustotal_ip_object(self, VIRUSTOTAL_API_KEY: str, s: requests.Session, ip: Optional[str] = None) -> None:

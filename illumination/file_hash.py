@@ -23,5 +23,4 @@ class FileHash:
         "accept":"application/json","x-apikey":f"{VIRUSTOTAL_API_KEY}"}
 
         self.virustotal = utils.get_JSON_response(s, url, headers)
-    
-    
+

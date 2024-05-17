@@ -18,7 +18,7 @@ class TestUtils(unittest.TestCase):
 
         self.assertFalse(False, utils.validate_file_hash("9930e58ec9ff55edb27281ed0*cc68bf7fb31593eabdaad88d928c4c2a13973b"))
 
-        
+
     def test_validate_ip_address(self):
 
         # Validates private IP Address

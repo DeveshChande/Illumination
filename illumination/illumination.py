@@ -59,7 +59,7 @@ def ip_analysis(program_arguments: dict, ABUSEIPDB_API_KEY: str, VIRUSTOTAL_API_
         if program_arguments["abuseipdb"]:
             ip_address_object.retrieve_abuseipdb_ip_object(ABUSEIPDB_API_KEY, s, ip)
 
-        if program_arguments["virustotal"]:    
+        if program_arguments["virustotal"]:
             ip_address_object.retrieve_virustotal_ip_object(VIRUSTOTAL_API_KEY, s, ip)
 
         if program_arguments["censys"]:
@@ -86,9 +86,9 @@ def parse_arguments():
     """
 
     parser = argparse.ArgumentParser(description="Illumination is a CLI tool to enrich atomic data.\n",
-                                     epilog="Written by Devesh Chande.\n", 
+                                     epilog="Written by Devesh Chande.\n",
                                      usage="python3 illumination.py [-i {IP_ADDR} | -s {SHA256_HASH}] [-a] [-v]")
-    
+
     parser.add_argument('-i', '--ip', help="Specify IP Address.")
     parser.add_argument('-s', '--sha256hash', help="Specify SHA256 Hash.")
     parser.add_argument('-v', '--virustotal', action="store_true", default=False, help="Enrich data from VirusTotal API.")
